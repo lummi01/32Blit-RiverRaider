@@ -1,0 +1,22 @@
+# All these assets will be created in assets.cpp, which CMake will
+# link automagically.
+# References can be picked up by including assets.hpp
+
+assets.cpp:
+  assets/icon.png:
+    name: asset_icon
+
+  assets/image.png:
+    name: asset_image
+
+  assets/riverraider.png:
+    name: spritesheet
+
+  assets/riverraider.tmx:
+    name: asset_tilemap
+
+  assets/4x6font.png:
+    name: font4x6
+    type: font/image
+
+
