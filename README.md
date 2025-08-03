@@ -4,11 +4,10 @@ a classic shooter for 32Blit.
 
 ![](/assets/screenshot.bmp)
 
-A very loose adaptation of Carol Shaw's successful shooter game "River Raid," released by Atari for the 2600VCS in 1982.
-Inspired by the excellent adaptation (River Raider, guscosta, 2022, https://www.lexaloffle.com/bbs/?tid=47969) for the Pico-8 virtual console, this version was created for the 32Blit console.<BR>
-I went the furthest with this version, using the sprites from Guscosta.
-The game is still in a very early beta phase and currently ends somewhat abruptly at the end of the four levels.
-Trying it out and have fun...
+A very loose adaptation of Carol Shaw's successful shooter game "River Raid," released by Atari for the 2600VCS in 1982.<BR>
+Inspired by the excellent Pico-8 adaptation (River Raider, guscosta, 2022, https://www.lexaloffle.com/bbs/?tid=47969), the sprites were largely used for this 32Blit version.<BR>
+The game is still in a very early alpha version and currently ends somewhat abruptly at the end of the four levels.<BR><BR>
+Try it out and have fun...<BR>
 
 For local build:
 ```
