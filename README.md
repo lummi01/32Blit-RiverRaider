@@ -1,5 +1,6 @@
 ![](/assets/image.png)
 # RiverRaider
+v0.0.6<BR>
 a classic shooter for 32Blit.<BR>
 
 ![](/assets/screenshot.bmp)<BR>
