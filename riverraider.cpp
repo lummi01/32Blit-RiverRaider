@@ -24,6 +24,7 @@ struct PLAYER
     float vel;
     short sprite;
     bool shot;
+    float fuel;
     Point start;
 };
 
@@ -111,6 +112,8 @@ bool ObjectCollision(Vec2 pos1, Vec2 pos2, bool shot){
              pos1.y < (o->pos.y + o->size.y - game.map_pos.y + 65) && 
              pos2.y > (o->pos.y - game.map_pos.y + 65)){
             if(shot == false && o->type == 80){ // fuel filling
+                if(p.fuel > 0)
+                    p.fuel -= .1f;
                 return false;
                 break;
             }
@@ -191,12 +194,13 @@ void NewObject(short type, Point size, Point pos, short hits){
 
 void UpdateObject(){
     for (auto o = object.begin(); o != object.end();){
-        if(o->pos.y + o->size.y - game.map_pos.y > -64){
+        if(o->pos.y + o->size.y - game.map_pos.y > -72){
             if(o->pos.y - game.map_pos.y > 47){
                 o = object.erase(o);
                 continue;
             }
             else if(o->type == 85){ // plane
+                o->pos.y += .5f;
             }
             else{
                 float x[2]{.1f, .2f};
@@ -228,16 +232,20 @@ void start(){
             if (game.map[y * 16 + x] == 0){
                 short tile = tmx->data[y * 16 + x];
                 // land
-                if (tile >= 32){
+                if(tile >= 32){
                     game.map[y * 16 + x] = 1;
                 }
                 // bridge
-                else if (tile == 21){
+                else if(tile == 21){
                     NewObject(112, Point(32, 8), Point(x, y), 3);
                 }
                 // fuel
-                else if (tile == 11){
+                else if(tile == 12){
                     NewObject(80, Point(8, 16), Point(x, y), 1);
+                }
+                // plane
+                else if(tile == 11){
+                    NewObject(85, Point(8, 8), Point(x, y), 1);
                 }
                 // tank, ship, heli, plane
                 else if(tile > 3 && tile < 11){
@@ -254,6 +262,7 @@ void start(){
     game.map_pos = Vec2(64, 1992);
     p.x = 76;
     p.start = Point(p.x, game.map_pos.y);
+    p.fuel = 0;
 }
 
 // init
@@ -316,7 +325,10 @@ void render(uint32_t time_ms){
 
     screen.pen = Pen(0, 0, 0);
     screen.rectangle(Rect(16, 112, 128, 8));
-    screen.sprite(Rect(13, 0, 3, 1), Point(68, 113)); // fuel
+    screen.pen = Pen(255, 0, 0);
+    screen.rectangle(Rect(91 - p.fuel, 114, 2, 5));
+    screen.sprite(Rect(0, 9, 3, 1), Point(69, 113)); // fuel
+    
     screen.pen = Pen(255, 255, 255);
 
     screen.text(std::to_string(int(game.map_pos.y)), font, Point(102, 113)); // object.size()
@@ -325,6 +337,10 @@ void render(uint32_t time_ms){
 
 // update
 void update(uint32_t time){
+    p.fuel += .008f;
+    if(p.fuel > 22)
+        start();
+
     UpdateControl();
     UpdateObject();
     UpdateShot();
@@ -337,12 +353,14 @@ void update(uint32_t time){
         ObjectCollision(Vec2(p.x + 1, 102), Vec2(p.x + 6, 103), false)){
         object.clear();
         shot.clear();
+        particle.clear();
         start();
     }
 
     if (game.map_pos.y < -32){
         object.clear();
         shot.clear();
+        particle.clear();
         start();
     }
 }
