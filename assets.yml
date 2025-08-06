@@ -15,8 +15,8 @@ assets.cpp:
   assets/riverraider.tmx:
     name: asset_tilemap
 
-  assets/4x6font.png:
-    name: font4x6
+  assets/4x5font.png:
+    name: font4x5
     type: font/image
 
 
