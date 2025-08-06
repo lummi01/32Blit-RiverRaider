@@ -3,7 +3,7 @@
 v0.0.9<BR>
 a classic shooter for 32Blit.<BR>
 
-![](/assets/screenshot.bmp)![](/assets/screenshot.bmp)![](/assets/screenshot.bmp)<BR>
+![](/assets/Screenshot/River Raider0.bmp)![](/assets/Screenshot/River Raider1.bmp)![](/assets/Screenshot/River Raider2.bmp)<BR>
 <BR>
 
 A very loose adaptation of Carol Shaw's successful shooter game "River Raid," released by Atari for the 2600VCS in 1982.<BR>
